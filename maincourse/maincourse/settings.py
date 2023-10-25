@@ -120,19 +120,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGGINS = {
+LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
         'debug_file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '<path_to_file>/debug.log'
+            'filename': f'{BASE_DIR}/debug.log'
         },
         'error_file': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
-            'filename': '<path_to_file>/error.log'
+            'filename': f'{BASE_DIR}/error.log'
         }
     },
     'loggers': {
