@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from mainapp.views import *
+from mainapp.views import GreetingView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,5 +24,8 @@ urlpatterns = [
     # path('hello', views.hello, name='hello2'),
     # path('',views.hello, name='index'),
     # path('', include('user_admin.urls')),
-    path('hello/?name=<str:user_name>', hello, name='hello'),
+    # path('hello/?name=<str:user_name>', hello, name='hello'),
+    # path('hello/', GreetingView.as_view(), name='greeting'),
+    path('', feedback, name='feedback'),
 ]
+
