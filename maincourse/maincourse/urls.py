@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from mainapp.views import *
-from mainapp.views import GreetingView
+from templetags import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,3 +29,6 @@ urlpatterns = [
     path('', feedback, name='feedback'),
 ]
 
+if setting.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    

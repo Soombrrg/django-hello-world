@@ -1,0 +1,47 @@
+<!DOCKTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <title>Форма отзыва</title>
+</head>
+<body>
+    <h1>Форма отзыва</h1>
+    <form method="POST" action="">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="review">Отзыв:</label>
+        <textarea name="user_feedback" id="review" required></textarea>
+        <br>
+        <input type="submit" value="Отправить">
+        {% csrf_token %}
+    </form>
+</body>
+</html>
+
+
+{% comment %} <ul>
+    {% for user in users %}
+        <li>{{ user.name }}</li>
+    {% endfor %}
+</ul> {% endcomment %}
+
+
+{% comment %} {% if user.name == "Developer" %}
+<h1> Welcome back! </h1>
+{% elif user.name == "Admin" %}
+<h1> Ready to work </h1>
+{% else %}
+<he> Hello, {{ user.name }}
+{% endif %} {% endcomment %}
+
+
+{% comment %} <form>
+    <input name="value">
+    {% csrf_token %}
+    </form> {% endcomment %}
+
+
+{% comment %} {% url 'some-url-name' v1 v2 %} {% endcomment %}
+
+{% comment %} path("some_url/<str:var1>/<int:var2>/")views.someurl, name="some-url-name") {% endcomment %}

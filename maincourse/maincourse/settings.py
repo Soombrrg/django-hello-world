@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'mainapp',
+    'mainapp',
+    'user_admin',
+    'user_app',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'staticfiles']
 
 LOGGING = {
     'version': 1,
