@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from django import template
 
 register = template.Library()
@@ -14,7 +14,7 @@ register.filter("split_vl", splitlvl_func)
 
 @register.simple_tag(name="current_time")
 def current_time(format_string):
-    return "Текущее время" + str(datetime.datetime.now().strtime(format_string))
+    return "Текущее время" + str(datetime.now().strftime(format_string))
 
 def now_time():
     return datetime.now()
@@ -32,3 +32,16 @@ def red_text(text):
 @register.inclusion_tag("colored.html", takes_context=True, name="make_color")
 def clr_text(context, text):
     return {'text': text, 'color': context['color']}
+
+
+##############
+@register.simple_tag(takes_context=True, name="listing")
+def listing(context):
+    req = context['words']
+    s = ''.join([f'''
+        <tr> 
+            <th> {k} </th>
+            <th> {v} </th>
+        </tr>
+        ''' for k, v in req.items])
+    return s
