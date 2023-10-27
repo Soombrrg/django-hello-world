@@ -6,10 +6,12 @@
 </head>
 <body>
     <table>
-        <tr>
-            {% load library_name %}
-            {% listing %}
-        </tr>
+        {% for key, value in data.items %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+            <tr>
+        {% endfor %}
     </table>
 </body>
 </html>

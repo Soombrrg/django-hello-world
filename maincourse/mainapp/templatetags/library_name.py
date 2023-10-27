@@ -1,5 +1,6 @@
 from datetime import datetime
 from django import template
+from ..views import *
 
 register = template.Library()
 
@@ -34,14 +35,13 @@ def clr_text(context, text):
     return {'text': text, 'color': context['color']}
 
 
-##############
-@register.simple_tag(takes_context=True, name="listing")
-def listing(context):
-    req = context['words']
-    s = ''.join([f'''
-        <tr> 
-            <th> {k} </th>
-            <th> {v} </th>
-        </tr>
-        ''' for k, v in req.items])
-    return s
+# ##############
+# @compl
+# @register.simple_tag(takes_context=True, name="listing")
+# def listing(context):
+#     words1, words2 = read_from_file()
+#     cont = dict(zip(words1, words2))
+#     # print('context:',context)
+#     s = '\n'.join([f'<tr><th> {k} </th><th> {v} </th></tr>' for k, v in cont.items()])
+#     print(s)
+#     return s

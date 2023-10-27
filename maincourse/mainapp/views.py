@@ -2,6 +2,16 @@ from django.shortcuts import render, HttpResponse
 from django.views import View
 from django.core.files.storage import FileSystemStorage
 
+
+def compl(func):
+    def wrapper(*args, **kwargs):
+        print('start:',func.__name__)
+        original_result = func(*args, **kwargs)
+        print('complite')
+        return original_result
+    return wrapper
+
+
 # Create your views here.
 def hello(request, user_name):
     context = {'name': user_name}
@@ -50,12 +60,13 @@ def new1(request):
 
 #     def new(self, request):
 #         render(request, 'add_word.html')
-
+@compl
 def add_to_file(word1: str, word2: str):
     with open("file.txt", "a", encoding="utf-8") as file:
         file.write(word1 + "-" + word2 + "\n")
 
 
+@compl
 def read_from_file():
     file = open("file.txt", "r", encoding="utf-8").read().splitlines()
     words1 = []
@@ -66,22 +77,23 @@ def read_from_file():
         words2.append(word2)
     return words1, words2
 
+@compl
 def add_word(request):
-    if request.method == 'POST' and request.POST['word1'] and request.POST['word2']:
+    if request.method == 'POST':
         add_to_file(request.POST['word1'], request.POST['word2'])
-
-        return render(request, 'words_list.html')
+        return render(request, 'dict_home.html')
     return render(request, 'add_word.html')
 
+@compl
 def words_reading(request):
     words1, words2 = read_from_file()
-    print(words1)
-    print(dict(zip(words1, words2)))
-    context = dict(zip(words1, words2))
-    print(context)
-    return render(request, 'words_list.html', context)
+    # print(words1)
+    # print(dict(zip(words1, words2)))
+    data = dict(zip(words1, words2))
+    return render(request, 'words_list.html', {'data': data})
 # print(read_from_file())
 
+@compl
 def home(request):
     context = {'Tittle': 'My dictionary'}
     return render(request, 'dict_home.html', context)
